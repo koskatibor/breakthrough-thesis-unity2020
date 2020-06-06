@@ -57,6 +57,8 @@ sysinfo.txt
 
 # Large Files
 *.png
+*.resS
+*.bc
 
 # Crashlytics generated file
 crashlytics-build.properties
