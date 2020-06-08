@@ -35,14 +35,15 @@ public class Move : MonoBehaviour
 				if (Input.GetMouseButtonDown(0))
 				{
 						if (this.GetComponent<Renderer>().material.color == GreenCubeMaterial.color)
-						{
+						{								
 								for (int i = 0; i < 16; i++)
 								{
-										if (fc.WhitePawns[i].GetComponent<SelectPawn>().isSelected)
+										if (fc.WhitePawns[i].activeSelf && fc.WhitePawns[i].GetComponent<SelectPawn>().isSelected)
 										{
-												//Debug.Log(fc.table);
-												fc.WhitePawns[i].GetComponent<Transform>().position = new Vector3(this.transform.position.x, fc.WhitePawns[i].GetComponent<Transform>().position.y, this.transform.position.z);
-												fc.WhitePawns[i].GetComponent<Renderer>().material = WhiteCubeMaterial;												
+												var newPosition = new Vector3(this.transform.position.x, fc.WhitePawns[i].GetComponent<Transform>().position.y, this.transform.position.z);
+												//Debug.Log(fc.table);												
+												fc.WhitePawns[i].GetComponent<Transform>().position = newPosition;
+												fc.WhitePawns[i].GetComponent<Renderer>().material = WhiteCubeMaterial;
 												break;
 										}
 								}
@@ -86,12 +87,12 @@ public class Move : MonoBehaviour
 				int[,] newState = new int[8, 8];
 				int z;
 				newState = root.getStateByID(z = root.getBestID());								
-				Debug.Log("Best MiniMax: " + root.getMinimaxByID(root.getBestID()));
+				Debug.Log("Best MiniMax: " + root.getMinimaxByID(z));				
 				setState(newState);
 				hitCheck();
 				Debug.Log("Best ID:" + root.getBestID());
 				fc.table = newState;
-				using (StreamWriter sr = new StreamWriter("developer_log.txt"))
+				using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
 				{
 						sr.WriteLine("Best ID" + root.getBestID());
 						for (int i = 0; i < 8; i++)

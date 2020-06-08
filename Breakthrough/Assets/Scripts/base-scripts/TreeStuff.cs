@@ -722,8 +722,10 @@ class Node
                 if (this.table[i, j] == 1)
                 {
                     switch (i)
-                    {                                                
-                        case 2: { mm += 2; placeValue = 2; break; }
+                    {
+												case 0: { mm += 1; placeValue = 1; break; }
+												case 1: { mm += 1; placeValue = 1; break; }
+												case 2: { mm += 2; placeValue = 2; break; }
                         case 3: { mm += 3; placeValue = 3; break; }
                         case 4: { mm += 5; placeValue = 5; break; }
                         case 5: { mm += 7; placeValue = 7; break; }
@@ -734,90 +736,61 @@ class Node
 										{
 												if (j != 0 && j != 7)
 												{
-														// Ha biztonságos mezőre lép az dupla pont.
+														// Ha biztonságos mezőre lép +1 pont.
 														if (table[i + 1, j + 1] == 0 && table[i + 1, j - 1] == 0)
-																mm += (i + 1) * 2;											
-														//Védő társak +1 pont
-														if (table[i - 1, j + 1] == 1)
+																mm ++;											
+														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+														if (table[i - 1, j] == 1)
 																mm++;
-														if (table[i - 1, j - 1] == 1)
+														if (table[i + 1, j] == 1)
 																mm++;
-														//Ellenfél ütő mezője - Nem biztonságos mező
-														if (table[i + 1, j + 1] == 2)
-																mm -= (i + 1) * 2;
-														if (table[i + 1, j - 1] == 2)
-																mm -= (i + 1) * 2;
+														if (table[i, j - 1] == 1)
+																mm++;
+														if (table[i, j + 1] == 1)
+																mm++;
+														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+														if (table[i + 1, j + 1] == 2 || table[i + 1, j - 1] == 2)
+																mm--;														
 												}
 												else
 												{
 														if (j == 0)
 														{
+																// Ha biztonságos mezőre lép +1 pont.
 																if (table[i + 1, j + 1] == 0)
-																		mm += (i + 1) * 2;					
-																
-																if (table[i - 1, j + 1] == 1)
 																		mm++;
-
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																if (table[i - 1, j] == 1)
+																		mm++;
+																if (table[i + 1, j] == 1)
+																		mm++;																
+																if (table[i, j + 1] == 1)
+																		mm++;
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 																if (table[i + 1, j + 1] == 2)
-																		mm -= (i + 1) * 2;
+																		mm--;
 														}
 														else
-														{																
+														{
+																// Ha biztonságos mezőre lép +1 pont.
 																if (table[i + 1, j - 1] == 0)
-																		mm += (i + 1) * 2;
-																
-																if (table[i - 1, j - 1] == 1)
 																		mm++;
-
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																if (table[i - 1, j] == 1)
+																		mm++;
+																if (table[i + 1, j] == 1)
+																		mm++;
+																if (table[i, j - 1] == 1)
+																		mm++;																
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 																if (table[i + 1, j - 1] == 2)
-																		mm -= (i + 1) * 2;
+																		mm--;
 														}
 												}
-
-												/*if (j != 0 && j != 7) //++ Ha van védő társa az +1 pont (középen)
-												{
-														if (table[i - 1, j + 1] == 1)
-																mm++;
-														if (table[i - 1, j - 1] == 1)
-																mm++;
-														//if (table[i, j + 1] == 1 || table[i, j - 1] == 1) //Ha mellette van az nem védő társ (-1 pont)
-														//		mm--;
-														if (table[i + 1, j + 1] == 2) // Ha ellenfél ütő mezőjére lép (-mm / 2 pont)
-																mm -= mm / 2;
-														if (table[i + 1, j - 1] == 2)
-																mm -= mm / 2;
-												}
-												if (j == 0) //++ Ha van védő társa az +1 pont (bal oldal)
-												{
-														if (table[i - 1, j + 1] == 1)
-																mm++;
-														//if (table[i, j + 1] == 1) //Ha mellette van az sem védő társ (-1 pont)
-														//		mm--;
-														if (table[i + 1, j + 1] == 2) // Ha ellenfél ütő mezőjére lép (-1 pont)
-																mm -= mm / 2;
-												}
-												if (j == 7) //++ Ha van védő társa az +1 pont (jobb oldal)
-												{
-														if (table[i - 1, j - 1] == 1)
-																mm++;
-														//if (table[i, j - 1] == 1) //Ha mellette van az sem védő társ (-1 pont)
-														//		mm--;
-														if (table[i + 1, j - 1] == 2) // Ha ellenfél ütő mezőjére lép (-mm/2 pont)
-																mm -= mm/2;
-												}
-												if (table[i - 1, j] == 1) //Ha mögötte van a bábu (nem védő, akkor -1 pont)
-														mm--;
-												if (i<7)
-												{
-														if (table[i + 1, j] == 1) //Ha előtte van a bábu (nem védő, akkor -1 pont)
-																mm--;
-														if (table[i + 1, j] == 2) //Ha előtte van ellenséges bábu(block) (ellenfél akkor +1 pont)
-																mm++;
-												}								*/
 										}												
 								}
                 //Ha fehér bábut találunk egy helyen
-                /*else
+                else
                 {
                     if (this.table[i, j] == 2)
                     {
@@ -829,54 +802,69 @@ class Node
                             case 3: { mm -= 5; break; }
                             case 4: { mm -= 3; break; }
                             case 5: { mm -= 2; break; }
-                        }
-										if (i > 0 && i < 7)
+														case 6: { mm -= 1; break; }
+														case 7: { mm -= 1; break; }
+												}
+										/*if (i > 0 && i < 7)
 										{
-												if (j != 0 && j != 7) //++ Ha van védő társa az -1 pont (középen)
+												if (j != 0 && j != 7)
 												{
-														if (table[i + 1, j + 1] == 2)
+														// Ha biztonságos mezőre lép -1 pont.
+														if (table[i - 1, j - 1] == 0 && table[i - 1, j + 1] == 0)
 																mm--;
-														if (table[i + 1, j - 1] == 2)
+														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+														if (table[i - 1, j] == 1)
+																mm++;
+														if (table[i + 1, j] == 1)
+																mm++;
+														if (table[i, j - 1] == 1)
+																mm++;
+														if (table[i, j + 1] == 1)
+																mm++;
+														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+														if (table[i + 1, j + 1] == 2 || table[i + 1, j - 1] == 2)
 																mm--;
-														//if (table[i, j + 1] == 2 || table[i, j - 1] == 2) //Ha mellette van az sem védő társ (+1 pont)
-														//		mm++;
-														if (table[i - 1, j + 1] == 1) // Ha ellenfél ütő mezőjére lép (-mm / 2 pont)
-																mm += mm / 2;
-														if (table[i - 1, j - 1] == 1)
-																mm += mm / 2;
 												}
-												else if (j == 0) //++ Ha van védő társa az -1 pont (bal oldal)
+												else
 												{
-														if (table[i + 1, j + 1] == 2)
-																mm--;
-														//if (table[i, j + 1] == 2) //Ha mellette van az sem védő társ (+1 pont)
-														//		mm++;
-														if (table[i - 1, j + 1] == 1) // Ha ellenfél ütő mezőjére lép (-mm / 2 pont)
-																mm += mm / 2;
-												}
-												else if (j == 7) //++ Ha van védő társa az -1 pont (jobb oldal)
-												{
-														if (table[i + 1, j - 1] == 2)
-																mm--;
-														//if (table[i, j - 1] == 2) //Ha mellette van az sem védő társ (+1 pont)
-														//		mm++;
-														if (table[i - 1, j - 1] == 1) // Ha ellenfél ütő mezőjére lép (-mm / 2 pont)
-																mm += mm / 2;
-												}
-												if (table[i + 1, j] == 2) //Ha mögötte van a bábu (nem védő, akkor +1 pont)
-														mm++;
-												if (i>0)
+														if (j == 0)
 														{
-																if (table[i - 1, j] == 2) //Ha előtte van a bábu (block) (ellenfél akkor +1 pont)
+																// Ha biztonságos mezőre lép +1 pont.
+																if (table[i + 1, j + 1] == 0)
 																		mm++;
-																if (table[i - 1, j] == 1) //Ha előtte van a bábu (block) (nem védő, akkor -1 pont)
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																if (table[i - 1, j] == 1)
+																		mm++;
+																if (table[i + 1, j] == 1)
+																		mm++;
+																if (table[i, j + 1] == 1)
+																		mm++;
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+																if (table[i + 1, j + 1] == 2)
 																		mm--;
-														}												
+														}
+														else
+														{
+																// Ha biztonságos mezőre lép +1 pont.
+																if (table[i + 1, j - 1] == 0)
+																		mm++;
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																if (table[i - 1, j] == 1)
+																		mm++;
+																if (table[i + 1, j] == 1)
+																		mm++;
+																if (table[i, j - 1] == 1)
+																		mm++;
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+																if (table[i + 1, j - 1] == 2)
+																		mm--;
+														}
 												}
+										}*/
 								}
-                }*/
             }
         }
+    }
         return mm;
     }
 
@@ -966,7 +954,7 @@ class Node
                 best_id = this.id;
             } else if (this.minimax == max_minimax)
 						{
-								if (Random.Range(1, 3) == 2) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
+								if (Random.Range(0.0f, 1.1f) > 0.5f) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
 								{
 										max_minimax = this.minimax;
 										best_id = this.id;
