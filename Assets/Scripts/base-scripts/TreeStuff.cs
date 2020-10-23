@@ -388,8 +388,7 @@ class Node
 		//CurrentMinimax számoló
 		public int CalculateMiniMax()
 		{
-				int mm = 0;
-				int agressiveFactor = 0;
+				int mm = 0;				
 
 				int[,] TableChanges = new int[8, 8];			
 
@@ -400,23 +399,25 @@ class Node
 						{
 								if (this.Table[i, j] == 1)
 								{
+										bool enemyRowDetected = false;
+										bool enemyColumnDetected = false;
 										switch (i)
 										{
 												case 0: { mm += 1; break; }
 												case 1: { mm += 2; break; }
 												case 2: { mm += 3; break; }
 												case 3: { mm += 4; break; }
-												case 4: { mm += 6 + agressiveFactor; break; }
-												case 5: { mm += 8 + agressiveFactor; break; }
-												case 6: { mm += 16 + agressiveFactor; break; }
-												case 7: { mm += 1000 + agressiveFactor; break; }
+												case 4: { mm += 8; break; }
+												case 5: { mm += 16; break; }
+												case 6: { mm += 32; break; }
+												case 7: { mm += 1000; break; }
 										}
 
 										if (j != 0 && j != 7)
 										{
 												// Ha biztonságos mezőre lép +1 pont.
 												if (i != 7 && this.Table[i + 1, j + 1] != 2 && this.Table[i + 1, j - 1] != 2)
-														mm += 4 + agressiveFactor;
+														mm += 4;
 												//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 												//Sor
 												if (this.Table[i, j - 1] == 1)
@@ -457,17 +458,17 @@ class Node
 														}
 														if (this.Table[i - 1, j - 1] == 1)
 														{
-																mm += 16 + agressiveFactor;
+																mm += 16;
 														}																
 														if (this.Table[i - 1, j + 1] == 1)
 														{
-																mm += 16 + agressiveFactor;
+																mm += 16;
 														}														
 														if (i != 0 && this.Table[i - 1, j] == 1)
 														{
-																mm += 16 + agressiveFactor;
+																mm += 16;
 														}														
-												}
+												}												
 										}
 										else
 										{
@@ -475,7 +476,7 @@ class Node
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j + 1] != 2)
-																mm += 4 + agressiveFactor;
+																mm += 4;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
@@ -503,19 +504,19 @@ class Node
 																mm -= 16;
 																if (this.Table[i - 1, j + 1] == 1)
 																{
-																		mm += 16 + agressiveFactor;
+																		mm += 16;
 																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		mm += 16 + agressiveFactor;																		
+																		mm += 16;
 																}
-														}
+														}														
 												}
 												else
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j - 1] != 2)
-																mm += 4 + agressiveFactor;
+																mm += 4;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
@@ -543,13 +544,13 @@ class Node
 																mm -= 16;
 																if (this.Table[i - 1, j - 1] == 1)
 																{
-																		mm += 16 + agressiveFactor;
+																		mm += 16;
 																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		mm += 16 + agressiveFactor;																		
+																		mm += 16;
 																}
-														}
+														}														
 												}
 										}
 								}
