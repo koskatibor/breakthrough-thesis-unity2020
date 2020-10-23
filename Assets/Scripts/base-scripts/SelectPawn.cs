@@ -45,7 +45,7 @@ public class SelectPawn : MonoBehaviour
 
 		private void OnMouseDown()
 		{
-				Debug.Log("Rajta van az egér: " + this.name);
+				//Debug.Log("Rajta van az egér: " + this.name);
 				mouseNotOver = false;
 				if (Controller.playersTurn)
 				{

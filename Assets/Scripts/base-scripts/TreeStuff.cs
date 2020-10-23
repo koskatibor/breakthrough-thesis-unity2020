@@ -61,20 +61,20 @@ class Node
 				int level = 0;
 				while (NodeStack.Count != 0)
 				{
-						//bool noNeedForMoreNodes = false;
+						bool noNeedForMoreNodes = false;
 						currentNode = NodeStack.Pop();
 						int[,] nextTable = new int[8, 8];
 						Node Child;
 
-						//for (int i = 0; i < 8; i++)
-						//{
-						//		if (currentNode.Table[0, i] == 2 || currentNode.Table[7, i] == 1)
-						//		{
-						//				noNeedForMoreNodes = true;
-						//		}
-						//}
+						for (int i = 0; i < 8; i++)
+						{
+								if (currentNode.Table[0, i] == 2 || currentNode.Table[7, i] == 1)
+								{
+										noNeedForMoreNodes = true;
+								}
+						}
 
-						while (currentNode.NodeLevel == MaxLevel)
+						while (currentNode.NodeLevel == MaxLevel || noNeedForMoreNodes)
 						{
 								if (NodeStack.Count == 0)
 								{
@@ -82,6 +82,7 @@ class Node
 										break;
 								}
 								currentNode = NodeStack.Pop();
+								noNeedForMoreNodes = false;
 						}
 						if (outOfNodes)
 								break;
@@ -387,44 +388,10 @@ class Node
 		//CurrentMinimax számoló
 		public int CalculateMiniMax()
 		{
-				int mm = 0;			
+				int mm = 0;
+				int agressiveFactor = 0;
 
-				int[,] TableChanges = new int[8, 8];
-
-				if (this.IsWhiteNode)
-				{
-						for (int i = 0; i < 8; i++)
-						{
-								for (int j = 0; j < 8; j++)
-								{
-										if (this.Parent != null && this.Table[i, j] == 2 && this.Table[i, j] == this.Parent.Table[i, j])
-										{
-												TableChanges[i, j] = 0;
-										}
-										else
-										{
-												TableChanges[i, j] = this.Table[i, j];
-										}
-								}
-						}
-				}
-				else
-				{
-						for (int i = 0; i < 8; i++)
-						{
-								for (int j = 0; j < 8; j++)
-								{
-										if (this.Table[i, j] == 1 && this.Table[i, j] == this.Parent.Table[i, j])
-										{
-												TableChanges[i, j] = 0;
-										}
-										else
-										{
-												TableChanges[i, j] = this.Table[i, j];
-										}
-								}
-						}
-				}
+				int[,] TableChanges = new int[8, 8];			
 
 				//Fekete pontjainak kiszámítása
 				for (int i = 0; i < 8; i++)
@@ -439,23 +406,23 @@ class Node
 												case 1: { mm += 2; break; }
 												case 2: { mm += 3; break; }
 												case 3: { mm += 4; break; }
-												case 4: { mm += 5; break; }
-												case 5: { mm += 6; break; }
-												case 6: { mm += 7; break; }
-												case 7: { mm += 1000; break; }
+												case 4: { mm += 6 + agressiveFactor; break; }
+												case 5: { mm += 8 + agressiveFactor; break; }
+												case 6: { mm += 16 + agressiveFactor; break; }
+												case 7: { mm += 1000 + agressiveFactor; break; }
 										}
 
 										if (j != 0 && j != 7)
 										{
 												// Ha biztonságos mezőre lép +1 pont.
 												if (i != 7 && this.Table[i + 1, j + 1] != 2 && this.Table[i + 1, j - 1] != 2)
-														mm += 4;
+														mm += 4 + agressiveFactor;
 												//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 												//Sor
 												if (this.Table[i, j - 1] == 1)
-														mm += 8;
+														mm += 16;
 												if (this.Table[i, j + 1] == 1)
-														mm += 8;
+														mm += 16;
 												if (i != 0 && this.Table[i, j - 1] == 1 && this.Table[i, j + 1] == 1)
 												{
 														if (this.Table[i - 1, j - 1] == 1)
@@ -466,9 +433,9 @@ class Node
 
 												//Oszlop
 												if (i != 0 && this.Table[i - 1, j] == 1)
-														mm += 4;
+														mm += 2;
 												if (i != 7 && this.Table[i + 1, j] == 1)
-														mm += 4;
+														mm += 2;
 												if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 												{
 														if (this.Table[i - 1, j - 1] == 1)
@@ -478,7 +445,7 @@ class Node
 												}
 
 												//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
-												if (i != 7 && (this.Table[i + 1, j + 1] == 2 || this.Table[i + 1, j - 1] == 2))
+												if (i != 7 && i > 2 && (this.Table[i + 1, j + 1] == 2 || this.Table[i + 1, j - 1] == 2))
 												{
 														if (this.Table[i + 1, j + 1] == 2)
 														{
@@ -488,25 +455,18 @@ class Node
 														{
 																mm -= 16;
 														}
+														if (this.Table[i - 1, j - 1] == 1)
+														{
+																mm += 16 + agressiveFactor;
+														}																
+														if (this.Table[i - 1, j + 1] == 1)
+														{
+																mm += 16 + agressiveFactor;
+														}														
 														if (i != 0 && this.Table[i - 1, j] == 1)
 														{
-																if (this.Table[i - 1, j - 1] == 1)
-																		mm += 8;
-																if (this.Table[i - 1, j + 1] == 1)
-																		mm += 8;
-														}
-														else
-														{
-																if (i != 0 && this.Table[i - 1, j - 1] == 1)
-																{
-																		mm += 8;
-																}
-																else
-																{
-																		if (i != 0 && this.Table[i - 1, j + 1] == 1)
-																				mm += 8;
-																}
-														}
+																mm += 16 + agressiveFactor;
+														}														
 												}
 										}
 										else
@@ -515,22 +475,22 @@ class Node
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j + 1] != 2)
-																mm += 4;
+																mm += 4 + agressiveFactor;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
 														if (this.Table[i, j + 1] == 1)
 														{
-																mm += 8;
+																mm += 16;
 																if (i != 0 && this.Table[i - 1, j + 1] == 1)
 																		mm += 2;
 														}
 
 														//Oszlop
 														if (i != 0 && this.Table[i - 1, j] == 1)
-																mm += 4;
+																mm += 2;
 														if (i != 7 && this.Table[i + 1, j] == 1)
-																mm += 4;
+																mm += 2;
 														if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 														{
 																if (this.Table[i - 1, j + 1] == 1)
@@ -538,15 +498,16 @@ class Node
 														}
 
 														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
-														if (i != 7 && this.Table[i + 1, j + 1] == 2)
+														if (i != 7 && i > 2 && this.Table[i + 1, j + 1] == 2)
 														{
 																mm -= 16;
+																if (this.Table[i - 1, j + 1] == 1)
+																{
+																		mm += 16 + agressiveFactor;
+																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		if (this.Table[i - 1, j + 1] == 1)
-																		{
-																				mm += 8;
-																		}
+																		mm += 16 + agressiveFactor;																		
 																}
 														}
 												}
@@ -554,22 +515,22 @@ class Node
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j - 1] != 2)
-																mm += 4;
+																mm += 4 + agressiveFactor;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
 														if (this.Table[i, j - 1] == 1)
 														{
-																mm += 8;
+																mm += 16;
 																if (i != 0 && this.Table[i - 1, j - 1] == 1)
 																		mm += 2;
 														}
 
 														//Oszlop
 														if (i != 0 && this.Table[i - 1, j] == 1)
-																mm += 4;
+																mm += 2;
 														if (i != 7 && this.Table[i + 1, j] == 1)
-																mm += 4;
+																mm += 2;
 														if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 														{
 																if (this.Table[i - 1, j - 1] == 1)
@@ -577,15 +538,16 @@ class Node
 														}
 
 														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
-														if (i != 7 && this.Table[i + 1, j - 1] == 2)
+														if (i != 7 && i > 2 && this.Table[i + 1, j - 1] == 2)
 														{
 																mm -= 16;
+																if (this.Table[i - 1, j - 1] == 1)
+																{
+																		mm += 16 + agressiveFactor;
+																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		if (this.Table[i - 1, j - 1] == 1)
-																		{
-																				mm += 8;
-																		}
+																		mm += 16 + agressiveFactor;																		
 																}
 														}
 												}
@@ -597,16 +559,16 @@ class Node
 								else
 								{
 										//Fehérek összpontszáma
-										if (TableChanges[i, j] == 2)
+										if (this.Table[i, j] == 2)
 										{
 												switch (i)
 												{
-														case 0: { mm -= 900; break; }
+														case 0: { mm -= 1500; break; }
 														case 1: { mm -= 256; break; }
 														case 2: { mm -= 128; break; }
-														//case 3: { mm -= 64; break; }
-														//case 4: { mm -= 32; break; }
-														//case 5: { mm -= 16; break; }
+														case 3: { mm -= 64; break; }
+														case 4: { mm -= 32; break; }
+														case 5: { mm -= 16; break; }
 														//case 6: { mm -= 8; break; }
 														//case 7: { mm -= 4; break; }
 												}
@@ -2272,8 +2234,8 @@ class Node
 										if (!loserState) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
 										{
 												System.Random random = new System.Random();
-												double rand1 = ((DateTime.Now.Ticks * random.NextDouble()) % (DateTime.Now.Ticks * random.NextDouble()));
-												double rand2 = ((DateTime.Now.Ticks * random.NextDouble()) % (DateTime.Now.Ticks * random.NextDouble()));
+												double rand1 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
+												double rand2 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
 												if (rand1 > rand2)
 												{
 														MaxMinimax = this.Children[i].Minimax;
@@ -2284,141 +2246,6 @@ class Node
 						}
 				}
 
-				//foreach (Node Child in this.Children)
-				//{
-				//		if (Child.Minimax > MaxMinimax)
-				//		{
-				//				MaxMinimax = Child.Minimax;
-				//				BestId = Child.Id;
-				//		}
-				//		else
-				//		{
-				//				if (Child.Minimax == MaxMinimax)
-				//				{
-				//						bool loserState = false;
-				//						if (!firstStep)
-				//						{
-				//								using (StreamReader sr = new StreamReader("secretknowledge.txt", true))
-				//								{
-				//										StringBuilder sb = new StringBuilder();
-				//										for (int i = 0; i < 8; i++)
-				//										{
-				//												for (int j = 0; j < 8; j++)
-				//												{
-				//														sb.Append(Child.Table[i, j]);
-				//												}
-				//										}
-				//										string stateString = sb.ToString();
-				//										while (!sr.EndOfStream)
-				//										{
-				//												if (string.Equals(sr.ReadLine(), stateString))
-				//												{
-				//														loserState = true;
-				//														break;
-				//												}
-				//										}
-				//								}
-				//						}
-
-				//						if (!loserState) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
-				//						{
-				//								float rand1 = (((Time.deltaTime * Random.Range(0.1f, 10.1f)) + Time.time) % Random.Range(0.1f, 10.1f));
-				//								float rand2 = (((Time.deltaTime * Random.Range(0.1f, 10.1f)) + Time.time) % Random.Range(0.1f, 10.1f));
-				//								if (rand1 > rand2)
-				//								{
-				//										MaxMinimax = Child.Minimax;
-				//										BestId = Child.Id;
-				//								}
-				//						}
-				//				}
-				//		}
-				//}
-
 				return BestId;
-				//if (this.Parent != null && this.Parent.Id == 0)
-				//{
-				//		using (StreamWriter sr = new StreamWriter("developer_log_nodesWithMinimax.txt", true))
-				//		{
-				//				sr.WriteLine("ID: " + this.Id + " | MiniMax: " + this.Minimax);
-				//				for (int i = 0; i < 8; i++)
-				//				{
-				//						for (int j = 0; j < 8; j++)
-				//						{
-				//								sr.Write(this.Table[i, j].ToString() + "  ");
-				//						}
-				//						sr.WriteLine();
-				//				}
-				//				sr.WriteLine();
-				//		}
-				//		if (this.Minimax > MaxMinimax)
-				//		{
-				//				MaxMinimax = this.Minimax;
-				//				BestId = this.Id;
-				//		}
-				//		else if (this.Minimax == MaxMinimax)
-				//		{
-				//				bool loserState = false;
-				//				if (!firstStep)
-				//				{
-				//						using (StreamReader sr = new StreamReader("secretknowledge.txt", true))
-				//						{
-				//								StringBuilder sb = new StringBuilder();
-				//								for (int i = 0; i < 8; i++)
-				//								{
-				//										for (int j = 0; j < 8; j++)
-				//										{
-				//												sb.Append(this.Table[i, j]);
-				//										}
-				//								}
-				//								string stateString = sb.ToString();
-				//								while (!sr.EndOfStream)
-				//								{
-				//										if (string.Equals(sr.ReadLine(), stateString))
-				//										{
-				//												loserState = true;
-				//												break;
-				//										}
-				//								}
-				//						}
-				//				}																
-
-				//				if (!loserState) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
-				//				{
-				//						float rand1 = (((Time.deltaTime * Random.Range(0.1f, 10.1f)) + Time.time) % Random.Range(0.1f, 10.1f));
-				//						float rand2 = (((Time.deltaTime * Random.Range(0.1f, 10.1f)) + Time.time) % Random.Range(0.1f, 10.1f));
-				//						if (rand1 > rand2)
-				//						{
-				//								MaxMinimax = this.Minimax;
-				//								BestId = this.Id;
-				//						}										
-				//				}
-				//		}
-				//		return BestId;
-				//}
-				//else
-				//{
-				//		if (this.Children.Count != 0)
-				//		{
-				//				for (int k = 0; k < this.Children.Count; k++)
-				//				{
-				//						this.Children[k].GetBestID(firstStep);
-				//				}
-				//		}
-
-				//		//using (StreamWriter sr = new StreamWriter("developer_log_nodesWithMinimax.txt", true))
-				//		//{
-				//		//		sr.WriteLine("ID: " + this.Id + " | MiniMax: " + this.Minimax);
-				//		//		for (int i = 0; i < 8; i++)
-				//		//		{
-				//		//				for (int j = 0; j < 8; j++)
-				//		//				{
-				//		//						sr.Write(this.Table[i, j].ToString() + "  ");
-				//		//				}
-				//		//				sr.WriteLine();
-				//		//		}
-				//		//		sr.WriteLine();
-				//		//}
-				//}
-				//return BestId;
 		}
 }
