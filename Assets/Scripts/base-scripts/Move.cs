@@ -87,7 +87,7 @@ public class Move : MonoBehaviour
 				StringBuilder sb = new StringBuilder();
 				using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
 				{
-						if(StepCounter < 5) //StepCounter < 4
+						if(true) //StepCounter < 4
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
 						}
