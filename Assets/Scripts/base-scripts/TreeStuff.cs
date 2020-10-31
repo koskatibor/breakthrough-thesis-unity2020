@@ -24,8 +24,7 @@ class Node
 						Id = 0;
 						Minimax = 0;
 						BestId = 0;
-						BestMinimax = 0;
-						MaxMinimax = int.MinValue;
+						BestMinimax = 0;						
 						this.NodeLevel = 0;
 				}
 				this.Children = new List<Node>();
@@ -385,6 +384,22 @@ class Node
 				}
 		}
 
+		public void AddTerminalMinimaxValuesOfWhiteAI()
+		{
+				if (this.Children.Count == 0)
+				{
+						this.Minimax = CalculateWhiteMinimax();
+				}
+				else
+				{
+						for (int i = 0; i < this.Children.Count; i++)
+						{
+								this.Children[i].AddTerminalMinimaxValuesOfWhiteAI();
+						}
+						
+				}
+		}
+
 		//CurrentMinimax számoló
 		public int CalculateMiniMax()
 		{
@@ -564,12 +579,205 @@ class Node
 												{
 														case 0: { mm -= 1500; break; }
 														case 1: { mm -= 256; break; }
-														case 2: { mm -= 64; break; }
-														case 3: { mm -= 32; break; }
-														case 4: { mm -= 16; break; }
-														case 5: { mm -= 8; break; }
+														case 2: { mm -= 128; break; }
+														case 3: { mm -= 64; break; }
+														case 4: { mm -= 32; break; }
+														case 5: { mm -= 16; break; }
+														case 6: { mm -= 8; break; }
+														case 7: { mm -= 4; break; }
+												}												
+										}
+								}
+						}
+				}
+
+				return mm;
+		}
+
+		public int CalculateWhiteMinimax()
+		{
+				int mm = 0;
+
+				int[,] TableChanges = new int[8, 8];
+
+				//Fekete pontjainak kiszámítása
+				for (int i = 0; i < 8; i++)
+				{
+						for (int j = 0; j < 8; j++)
+						{
+								if (this.Table[i, j] == 1)
+								{
+										switch (i)
+										{
+												case 0: { mm += 4; break; }
+												case 1: { mm += 8; break; }
+												case 2: { mm += 16; break; }
+												case 3: { mm += 32; break; }
+												case 4: { mm += 64; break; }
+												case 5: { mm += 128; break; }
+												case 6: { mm += 256; break; }
+												case 7: { mm += 1500; break; }
+										}																				
+								}
+								//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								else
+								{
+										//Fehérek összpontszáma
+										if (this.Table[i, j] == 2)
+										{
+												switch (i)
+												{
+														case 0: { mm -= 1000; break; }
+														case 1: { mm -= 24; break; }
+														case 2: { mm -= 20; break; }
+														case 3: { mm -= 16; break; }
+														case 4: { mm -= 8; break; }
+														case 5: { mm -= 4; break; }
 														case 6: { mm -= 2; break; }
 														case 7: { mm -= 1; break; }
+												}
+
+												if (j != 0 && j != 7)
+												{
+														// Ha biztonságos mezőre lép +1 pont.
+														if (i != 0 && this.Table[i - 1, j + 1] != 1 && this.Table[i - 1, j - 1] != 1)
+																mm -= 4;
+														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+														//Sor
+														if (this.Table[i, j - 1] == 2)
+																mm -= 8;
+														if (this.Table[i, j + 1] == 2)
+																mm -= 8;
+														if (i != 7 && this.Table[i, j - 1] == 2 && this.Table[i, j + 1] == 2)
+														{
+																if (this.Table[i + 1, j - 1] == 2)
+																		mm -= 4;
+																if (this.Table[i + 1, j + 1] == 2)
+																		mm -= 4;
+														}
+
+														//Oszlop
+														if (i != 0 && this.Table[i - 1, j] == 2)
+																mm -= 4;
+														if (i != 7 && this.Table[i + 1, j] == 2)
+																mm -= 4;
+														if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
+														{
+																if (this.Table[i + 1, j - 1] == 2)
+																		mm -= 4;
+																if (this.Table[i + 1, j + 1] == 2)
+																		mm -= 4;
+														}
+
+														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+														if (i != 0 && i < 5 && (this.Table[i - 1, j + 1] == 1 || this.Table[i - 1, j - 1] == 1))
+														{
+																if (this.Table[i - 1, j + 1] == 1)
+																{
+																		mm += 18;
+																}
+																if (this.Table[i - 1, j - 1] == 1)
+																{
+																		mm += 18;
+																}
+																if (this.Table[i + 1, j - 1] == 2)
+																{
+																		mm -= 16;
+																}
+																if (this.Table[i + 1, j + 1] == 2)
+																{
+																		mm -= 16;
+																}
+																if (i != 0 && this.Table[i + 1, j] == 2)
+																{
+																		mm -= 16;
+																}
+														}
+												}
+												else
+												{
+														if (j == 0)
+														{
+																// Ha biztonságos mezőre lép +1 pont.
+																if (i != 0 && this.Table[i - 1, j + 1] != 1)
+																		mm -= 4;
+
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																//Sor
+																if (this.Table[i, j + 1] == 2)
+																{
+																		mm -= 16;
+																		if (i != 7 && this.Table[i + 1, j + 1] == 2)
+																				mm -= 8;
+																}
+
+																//Oszlop
+																if (i != 0 && this.Table[i - 1, j] == 2)
+																		mm -= 6;
+																if (i != 7 && this.Table[i + 1, j] == 2)
+																		mm -= 6;
+																if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
+																{
+																		if (this.Table[i + 1, j + 1] == 2)
+																				mm -= 4;
+																}
+
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+																if (i != 0 && i < 5 && this.Table[i - 1, j + 1] == 1)
+																{
+																		mm += 21;
+																		if (this.Table[i + 1, j + 1] == 2)
+																		{
+																				mm -= 16;
+																		}
+																		if (i != 7 && this.Table[i + 1, j] == 2)
+																		{
+																				mm -= 16;
+																		}
+																}
+														}
+														else
+														{
+																// Ha biztonságos mezőre lép +1 pont.
+																if (i != 0 && this.Table[i - 1, j - 1] != 1)
+																		mm -= 4;
+
+																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
+																//Sor
+																if (this.Table[i, j - 1] == 2)
+																{
+																		mm -= 16;
+																		if (i != 7 && this.Table[i + 1, j - 1] == 2)
+																				mm -= 8;
+																}
+
+																//Oszlop
+																if (i != 0 && this.Table[i - 1, j] == 2)
+																		mm -= 6;
+																if (i != 7 && this.Table[i + 1, j] == 2)
+																		mm -= 6;
+																if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
+																{
+																		if (this.Table[i + 1, j - 1] == 2)
+																				mm -= 4;
+																}
+
+																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
+																if (i != 0 && i < 5 && this.Table[i - 1, j - 1] == 1)
+																{
+																		mm += 21;
+																		if (this.Table[i + 1, j - 1] == 2)
+																		{
+																				mm -= 16;
+																		}
+																		if (i != 7 && this.Table[i + 1, j] == 2)
+																		{
+																				mm -= 16;
+																		}
+																}
+														}
 												}
 										}
 								}
@@ -714,20 +922,20 @@ class Node
 				}
 				return State;
 		}	
-
-		static int MaxMinimax = int.MinValue;
+		
 		public int GetBestID(bool firstStep)
 		{
+				int MinMinimax = int.MinValue;
 				for (int i = 0; i < this.Children.Count; i++)
 				{												
-						if (this.Children[i].Minimax > MaxMinimax)
+						if (this.Children[i].Minimax > MinMinimax)
 						{
-								MaxMinimax = this.Children[i].Minimax;
+								MinMinimax = this.Children[i].Minimax;
 								BestId = this.Children[i].Id;
 						}
 						else
 						{
-								if (this.Children[i].Minimax == MaxMinimax)
+								if (this.Children[i].Minimax == MinMinimax)
 								{
 										bool loserState = false;
 										if (!firstStep)
@@ -761,7 +969,64 @@ class Node
 												double rand2 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
 												if (rand1 > rand2)
 												{
-														MaxMinimax = this.Children[i].Minimax;
+														MinMinimax = this.Children[i].Minimax;
+														BestId = this.Children[i].Id;
+												}
+										}
+								}
+						}
+				}
+
+				return BestId;
+		}
+
+		public int GetBestIDForWhiteAi(bool firstStep)
+		{
+				int MinMinimax = int.MaxValue;
+				for (int i = 0; i < this.Children.Count; i++)
+				{
+						if (this.Children[i].Minimax < MinMinimax)
+						{
+								MinMinimax = this.Children[i].Minimax;
+								BestId = this.Children[i].Id;
+						}
+						else
+						{
+								if (this.Children[i].Minimax == MinMinimax)
+								{
+										bool loserState = false;
+										if (!firstStep)
+										{
+												using (StreamReader sr = new StreamReader("secretknowledge_white.txt", true))
+												{
+														StringBuilder sb = new StringBuilder();
+														for (int j = 0; j < 8; j++)
+														{
+																for (int k = 0; k < 8; k++)
+																{
+																		sb.Append(this.Children[i].Table[j, k]);
+																}
+														}
+														string stateString = sb.ToString();
+														while (!sr.EndOfStream)
+														{
+																if (string.Equals(sr.ReadLine(), stateString))
+																{
+																		loserState = true;
+																		break;
+																}
+														}
+												}
+										}
+
+										if (!loserState) //Ha két csomópont értéke egyenlő, véletlenszerűen választunk.
+										{
+												System.Random random = new System.Random();
+												double rand1 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
+												double rand2 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
+												if (rand1 > rand2)
+												{
+														MinMinimax = this.Children[i].Minimax;
 														BestId = this.Children[i].Id;
 												}
 										}

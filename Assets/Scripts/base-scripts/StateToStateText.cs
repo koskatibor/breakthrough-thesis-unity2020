@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 
 public class StateToStateText : MonoBehaviour
-{
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-    
-    public TextMesh StateText3D;
+{    
+	public TextMesh StateText3D;
 	// Update is called once per frame
+
 	void Update () {
 		if (Input.GetKey(KeyCode.T))
         {
@@ -28,6 +23,12 @@ public class StateToStateText : MonoBehaviour
 				if (Input.GetKey(KeyCode.Z))
 				{
 						StateText3D.text = "";
+				}
+
+				//AutoPlay
+				if (Input.GetKey(KeyCode.P))
+				{
+
 				}
 		}    
 }

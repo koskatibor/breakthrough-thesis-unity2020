@@ -155,8 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &38146411 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300088, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -287,8 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &108781682
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,8 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &136393106 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100072, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -540,8 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &137548911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a2dac1244456874499447a18a798b6ad,
@@ -942,8 +934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &201689172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100028, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -975,8 +965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &202625124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1179,8 +1167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &220676277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1470,8 +1456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!4 &240360395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4508050771134228, guid: 669679f799484624f86f2ca3427a8be8,
@@ -1588,8 +1572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &267281910 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300032, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -1774,8 +1756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &332584550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1886,8 +1866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &345874962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ece5bb32a1556d444ad025a0a2e0e84d,
@@ -2134,8 +2112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &391131158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,8 +2238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &393900204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2379,8 +2353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &400756033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,8 +2457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &488989775 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -2605,7 +2575,11 @@ MonoBehaviour:
   - {fileID: 2072354640}
   - {fileID: 717329459}
   AILostGame: 0
+  PlayerLostGame: 0
   playersTurn: 1
+  PassiveBlack: 0
+  PassiveWhite: 0
+  FirstStart: 1
 --- !u!1001 &495888819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2691,6 +2665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 496396554}
   - component: {fileID: 496396553}
+  - component: {fileID: 496396555}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -2725,6 +2700,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &496396555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496396552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca88a17fb2b6e514b9462c8ff731dd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &497507715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3337,8 +3324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &577158919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100098, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -3370,8 +3355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &579485313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1236559902405704, guid: 669679f799484624f86f2ca3427a8be8,
@@ -3464,8 +3447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &687583409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3681,8 +3662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &717329459 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ece5bb32a1556d444ad025a0a2e0e84d,
@@ -3777,8 +3756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &746293128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3895,8 +3872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &767215648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100012, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -3928,8 +3903,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &768699536 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100024, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -3961,8 +3934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &772186135 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300022, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -4467,8 +4438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &914846473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4579,8 +4548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &930489950 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300028, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -5403,8 +5370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &983227425
 GameObject:
   m_ObjectHideFlags: 0
@@ -5677,8 +5642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1063180166 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300108, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -5740,8 +5703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1113445556
 GameObject:
   m_ObjectHideFlags: 0
@@ -5947,8 +5908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1160292106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6068,8 +6027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1205000523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6279,8 +6236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1220163633 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ece5bb32a1556d444ad025a0a2e0e84d,
@@ -6712,8 +6667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1332404514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7111,8 +7064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1397081531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7235,8 +7186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1430233823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100032, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -7268,8 +7217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1431308441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100016, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -7301,8 +7248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1433697049 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300112, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -7340,8 +7285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1453480200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100100, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -7373,8 +7316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1462162837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a2dac1244456874499447a18a798b6ad,
@@ -7588,8 +7529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1485383270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100030, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -7621,8 +7560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1494571122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7929,8 +7866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1535449456 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300076, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8042,8 +7977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1598759254 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300106, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8087,8 +8020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1608792598 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300002, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8246,8 +8177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1637605947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8391,8 +8320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1640691609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100022, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8424,8 +8351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1642845680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ece5bb32a1556d444ad025a0a2e0e84d,
@@ -8601,8 +8526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1735114155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100096, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8634,8 +8557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1736334770 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100128, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8667,8 +8588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1746056166 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300068, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -8876,8 +8795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1770148743 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300098, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9119,8 +9036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1837991953 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300114, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9599,8 +9514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &1878762433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9802,8 +9715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1900013665 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300092, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9841,8 +9752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1912040852 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9874,8 +9783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1914567059 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300070, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9913,8 +9820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &1935205719 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100068, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -9946,8 +9851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &1940453897 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300122, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -10264,8 +10167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!23 &2047051644 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2300104, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -10367,8 +10268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &2057105022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10487,8 +10386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &2071064051
 GameObject:
   m_ObjectHideFlags: 0
@@ -10596,8 +10493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1001 &2102752380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10807,8 +10702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &2111459158 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100058, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -10840,8 +10733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &2112906647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100064, guid: e0fd820f96c675349a59274cde97ef3a,
@@ -10873,8 +10764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a72d4984ca3bc3488ed7311cd482d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhiteCubeMaterial: {fileID: 0}
-  GreenCubeMaterial: {fileID: 0}
 --- !u!1 &2130073625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ece5bb32a1556d444ad025a0a2e0e84d,
