@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.menu_scripts.play_scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Threading;
 using UnityEngine;
 
 public class Move : MonoBehaviour
-{
-		// Use this for initialization
+{		
 		FieldController Controller;
+		AIDetails AiDetails;
 		private Material WhitePawnMaterial;		
 		private Material GreenCubeMaterial;
-		private static List<string> UsedStates = new List<string>();		
+		private static List<string> UsedStates = new List<string>();
+		private int StepRandomizer;
 
 		void Start()
 		{
@@ -24,6 +26,10 @@ public class Move : MonoBehaviour
 
 				GameObject ChessTable = GameObject.Find("chess-table");
 				Controller = ChessTable.GetComponent<FieldController>();
+				GameObject ScriptHolder = GameObject.Find("ScriptHolder");
+				AiDetails = ScriptHolder.GetComponent<AIDetails>();
+
+				StepRandomizer = Random.Range(2, 10);
 		}
 
 		public void OnMouseOver()
@@ -64,19 +70,20 @@ public class Move : MonoBehaviour
 		{
 				Node root = new Node(Controller.Table, null, true, 0);
 				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
-				Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
+				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
 				treebuild.Start();
 				while (true)
 				{
 						if (!(treebuild.ThreadState == ThreadState.Running))
 								break;
 				}
-				minimax.Start();
-				while (true)
-				{
-						if (!(minimax.ThreadState == ThreadState.Running))
-								break;
-				}
+				root.AddTerminalMinimaxValues(AiDetails);
+				//minimax.Start();
+				//while (true)
+				//{
+				//		if (!(minimax.ThreadState == ThreadState.Running))
+				//				break;
+				//}
 				//root.BuildTree();
 				//root.AddTerminalMinimaxValues();
 				root.FillTreeWithMinimax(int.MinValue, int.MaxValue);
@@ -85,9 +92,9 @@ public class Move : MonoBehaviour
 				int bestMinimax;
 				int choosen_best_id;				
 				StringBuilder sb = new StringBuilder();
-				using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
-				{
-						if(StepCounter < 5) //StepCounter < 4
+				//using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
+				//{
+						if(StepCounter < StepRandomizer) //StepCounter < 4
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
 						}
@@ -122,17 +129,17 @@ public class Move : MonoBehaviour
 						Controller.HitCheck();						
 						Controller.Table = newState;
 				
-						sr.WriteLine("Best ID" + choosen_best_id + " MiniMax = " + bestMinimax);
-						for (int i = 0; i < 8; i++)
-						{
-								for (int j = 0; j < 8; j++)
-								{
-										sr.Write(Controller.Table[i, j].ToString() + "  ");
-								}
-								sr.WriteLine();
-						}
-						sr.WriteLine();						
-				}
+						//sr.WriteLine("Best ID" + choosen_best_id + " MiniMax = " + bestMinimax);
+						//for (int i = 0; i < 8; i++)
+						//{
+						//		for (int j = 0; j < 8; j++)
+						//		{
+						//				sr.Write(Controller.Table[i, j].ToString() + "  ");
+						//		}
+						//		sr.WriteLine();
+						//}
+						//sr.WriteLine();						
+				//}
 				StepCounter++;
 				Controller.Start();
 				Controller.playersTurn = true;

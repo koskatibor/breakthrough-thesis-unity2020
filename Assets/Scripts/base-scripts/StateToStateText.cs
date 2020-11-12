@@ -6,7 +6,7 @@ public class StateToStateText : MonoBehaviour
 	// Update is called once per frame
 
 	void Update () {
-		if (Input.GetKey(KeyCode.T))
+		if (Input.GetKey(KeyCode.T) && Time.timeScale != 0)
         {
 						StateText3D.text = "";
             GameObject ChessTable = GameObject.Find("chess-table");
@@ -20,15 +20,5 @@ public class StateToStateText : MonoBehaviour
 								StateText3D.text += '\n';
 						}
         }
-				if (Input.GetKey(KeyCode.Z))
-				{
-						StateText3D.text = "";
-				}
-
-				//AutoPlay
-				if (Input.GetKey(KeyCode.P))
-				{
-
-				}
 		}    
 }

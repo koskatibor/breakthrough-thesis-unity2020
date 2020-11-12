@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class FieldController : MonoBehaviour
@@ -15,7 +16,6 @@ public class FieldController : MonoBehaviour
 		public int PassiveBlack = 0;
 		public int PassiveWhite = 0;
 
-
 		public void SetDefaultCubeColors()
     {
         for (int i = 0; i < 64; i++)
@@ -31,7 +31,22 @@ public class FieldController : MonoBehaviour
     {
         if (FirstStart)
         {
-            for (int i = 0; i < 64; i++)
+						if (!File.Exists("secretknowledge.txt"))
+						{
+								using (StreamWriter sw = new StreamWriter("secretknowledge.txt", true))
+								{
+										sw.WriteLine(string.Empty);
+								}
+						}
+						if (!File.Exists("secretknowledge_white.txt"))
+						{
+								using (StreamWriter sw = new StreamWriter("secretknowledge_white.txt", true))
+								{
+										sw.WriteLine(string.Empty);
+								}
+						}
+
+						for (int i = 0; i < 64; i++)
             {
 								CubeMaterials[i] = Cubes[i].material;                
             }

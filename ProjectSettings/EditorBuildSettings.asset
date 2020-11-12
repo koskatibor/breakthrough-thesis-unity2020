@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 3481a29a87d9afa48a021116115e881f
   - enabled: 1
-    path: Assets/Scenes/PlayerVSAI.unity
+    path: Assets/Scenes/AIVSAI.unity
     guid: 97e2108dd5e2d364ebc138468100cf49
+  - enabled: 1
+    path: Assets/Scenes/PlayerVSAI.unity
+    guid: 9ad5b70945c7dfd459fb405575da3705
   m_configObjects: {}

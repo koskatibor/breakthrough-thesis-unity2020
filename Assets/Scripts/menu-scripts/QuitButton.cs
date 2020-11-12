@@ -17,6 +17,10 @@ namespace Assets.Scripts.menu_scripts
 				private void OnMouseOver()
 				{
 						QuitText.color = OnMouseOverColor;
+						if (Input.GetMouseButtonDown(0))
+						{
+								Application.Quit();
+						}
 				}
 
 				private void OnMouseExit()

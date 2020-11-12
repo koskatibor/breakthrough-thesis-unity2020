@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.menu_scripts.play_scripts;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -14,7 +15,7 @@ class Node
 		public static int Counter = 0;
 		int Id;
 		int Minimax;
-		int NodeLevel;
+		int NodeLevel;		
 
 		public Node(int[,] Table, Node parent, bool isWhiteNode, int NodeLevel)
 		{
@@ -364,48 +365,43 @@ class Node
 				}
 		}
 
-		public void AddTerminalMinimaxValues()
+		public void AddTerminalMinimaxValues(AIDetails aiDetails)
 		{
 				if (this.Children.Count == 0)
 				{
-						this.Minimax = CalculateMiniMax();
+						this.Minimax = CalculateMiniMax(aiDetails);
 				}
 				else
 				{
 						for (int i = 0; i < this.Children.Count; i++)
 						{
-								this.Children[i].AddTerminalMinimaxValues();
+								this.Children[i].AddTerminalMinimaxValues(aiDetails);
 						}
-
-						//foreach (Node item in this.Children)
-						//{
-						//		item.AddTerminalMinimaxValues();
-						//}
 				}
 		}
 
-		public void AddTerminalMinimaxValuesOfWhiteAI()
+		public void AddTerminalMinimaxValuesOfWhiteAI(AIDetails aiDetails)
 		{
 				if (this.Children.Count == 0)
 				{
-						this.Minimax = CalculateWhiteMinimax();
+						this.Minimax = CalculateWhiteMinimax(aiDetails);
 				}
 				else
 				{
 						for (int i = 0; i < this.Children.Count; i++)
 						{
-								this.Children[i].AddTerminalMinimaxValuesOfWhiteAI();
+								this.Children[i].AddTerminalMinimaxValuesOfWhiteAI(aiDetails);
 						}
 						
 				}
 		}
 
 		//CurrentMinimax számoló
-		public int CalculateMiniMax()
-		{
+		public int CalculateMiniMax(AIDetails aiDetails)
+		{				
 				int mm = 0;				
 
-				int[,] TableChanges = new int[8, 8];			
+				int[,] TableChanges = new int[8, 8];
 
 				//Fekete pontjainak kiszámítása
 				for (int i = 0; i < 8; i++)
@@ -416,46 +412,46 @@ class Node
 								{										
 										switch (i)
 										{
-												case 0: { mm += 1; break; }
-												case 1: { mm += 2; break; }
-												case 2: { mm += 4; break; }
-												case 3: { mm += 8; break; }
-												case 4: { mm += 16; break; }
-												case 5: { mm += 20; break; }
-												case 6: { mm += 24; break; }
-												case 7: { mm += 1000; break; }
+												case 0: { mm += aiDetails.BlackRowBonuses[0]; break; }
+												case 1: { mm += aiDetails.BlackRowBonuses[1]; break; }
+												case 2: { mm += aiDetails.BlackRowBonuses[2]; break; }
+												case 3: { mm += aiDetails.BlackRowBonuses[3]; break; }
+												case 4: { mm += aiDetails.BlackRowBonuses[4]; break; }
+												case 5: { mm += aiDetails.BlackRowBonuses[5]; break; }
+												case 6: { mm += aiDetails.BlackRowBonuses[6]; break; }
+												case 7: { mm += aiDetails.BlackRowBonuses[7]; break; }
 										}
 
 										if (j != 0 && j != 7)
 										{
 												// Ha biztonságos mezőre lép +1 pont.
 												if (i != 7 && this.Table[i + 1, j + 1] != 2 && this.Table[i + 1, j - 1] != 2)
-														mm += 4;
+														mm += aiDetails.BlackSafeFieldBonus;
 												//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 												//Sor
 												if (this.Table[i, j - 1] == 1)
-														mm += 8;
+														mm += aiDetails.BlackRowFormationBonus;
 												if (this.Table[i, j + 1] == 1)
-														mm += 8;
+														mm += aiDetails.BlackRowFormationBonus;
 												if (i != 0 && this.Table[i, j - 1] == 1 && this.Table[i, j + 1] == 1)
 												{
 														if (this.Table[i - 1, j - 1] == 1)
-																mm += 4;
+																mm += aiDetails.BlackDiagonalFormationBonus_SecondaryFormation;
 														if (this.Table[i - 1, j + 1] == 1)
-																mm += 4;
+																mm += aiDetails.BlackDiagonalFormationBonus_SecondaryFormation;
 												}
 
 												//Oszlop
 												if (i != 0 && this.Table[i - 1, j] == 1)
-														mm += 4;
+														mm += aiDetails.BlackColumnFormationBonus;
 												if (i != 7 && this.Table[i + 1, j] == 1)
-														mm += 4;
+														mm += aiDetails.BlackColumnFormationBonus;
 												if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 												{
 														if (this.Table[i - 1, j - 1] == 1)
-																mm += 4;
+																mm += aiDetails.BlackDiagonalFormationBonus_SecondaryFormation;
 														if (this.Table[i - 1, j + 1] == 1)
-																mm += 4;
+																mm += aiDetails.BlackDiagonalFormationBonus_SecondaryFormation;
 												}
 
 												//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
@@ -463,23 +459,23 @@ class Node
 												{
 														if (this.Table[i + 1, j + 1] == 2)
 														{
-																mm -= 18;
+																mm -= aiDetails.BlackPenaltyForDangerousField;
 														}
 														if (this.Table[i + 1, j - 1] == 2)
 														{
-																mm -= 18;
+																mm -= aiDetails.BlackPenaltyForDangerousField;
 														}
 														if (this.Table[i - 1, j - 1] == 1)
 														{
-																mm += 16;
+																mm += aiDetails.BlackPawnInDangerDefenderBonus;
 														}																
 														if (this.Table[i - 1, j + 1] == 1)
 														{
-																mm += 16;
+																mm += aiDetails.BlackPawnInDangerDefenderBonus;
 														}														
 														if (i != 0 && this.Table[i - 1, j] == 1)
 														{
-																mm += 16;
+																mm += aiDetails.BlackPawnInDangerDefenderBonus;
 														}														
 												}												
 										}
@@ -489,39 +485,39 @@ class Node
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j + 1] != 2)
-																mm += 4;
+																mm += aiDetails.BlackSafeFieldBonusOnSide;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
 														if (this.Table[i, j + 1] == 1)
 														{
-																mm += 16;
+																mm += aiDetails.BlackRowFormationBonusOnSide;
 																if (i != 0 && this.Table[i - 1, j + 1] == 1)
-																		mm += 8;
+																		mm += aiDetails.BlackDiagonalFormationBonusOnSide_SecondaryFormation;
 														}
 
 														//Oszlop
 														if (i != 0 && this.Table[i - 1, j] == 1)
-																mm += 6;
+																mm += aiDetails.BlackColumnFormationBonusOnSide;
 														if (i != 7 && this.Table[i + 1, j] == 1)
-																mm += 6;
+																mm += aiDetails.BlackColumnFormationBonusOnSide;
 														if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 														{
 																if (this.Table[i - 1, j + 1] == 1)
-																		mm += 4;
+																		mm += aiDetails.BlackDiagonalFormationBonusOnSide_SecondaryFormation;
 														}
 
 														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 														if (i != 7 && i > 2 && this.Table[i + 1, j + 1] == 2)
 														{
-																mm -= 21;
+																mm -= aiDetails.BlackPenaltyForDangerousFieldOnSide;
 																if (this.Table[i - 1, j + 1] == 1)
 																{
-																		mm += 16;
+																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		mm += 16;
+																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
 														}														
 												}
@@ -529,39 +525,39 @@ class Node
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 7 && this.Table[i + 1, j - 1] != 2)
-																mm += 4;
+																mm += aiDetails.BlackSafeFieldBonusOnSide;
 
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
 														if (this.Table[i, j - 1] == 1)
 														{
-																mm += 16;
+																mm += aiDetails.BlackRowFormationBonusOnSide;
 																if (i != 0 && this.Table[i - 1, j - 1] == 1)
-																		mm += 8;
+																		mm += aiDetails.BlackDiagonalFormationBonusOnSide_SecondaryFormation;
 														}
 
 														//Oszlop
 														if (i != 0 && this.Table[i - 1, j] == 1)
-																mm += 6;
+																mm += aiDetails.BlackColumnFormationBonusOnSide;
 														if (i != 7 && this.Table[i + 1, j] == 1)
-																mm += 6;
+																mm += aiDetails.BlackColumnFormationBonusOnSide;
 														if (i != 7 && i != 0 && this.Table[i - 1, j] == 1 && this.Table[i + 1, j] == 1)
 														{
 																if (this.Table[i - 1, j - 1] == 1)
-																		mm += 4;
+																		mm += aiDetails.BlackDiagonalFormationBonusOnSide_SecondaryFormation;
 														}
 
 														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 														if (i != 7 && i > 2 && this.Table[i + 1, j - 1] == 2)
 														{
-																mm -= 21;
+																mm -= aiDetails.BlackPenaltyForDangerousFieldOnSide;
 																if (this.Table[i - 1, j - 1] == 1)
 																{
-																		mm += 16;
+																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
 																if (i != 0 && this.Table[i - 1, j] == 1)
 																{
-																		mm += 16;
+																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
 														}														
 												}
@@ -577,14 +573,14 @@ class Node
 										{
 												switch (i)
 												{
-														case 0: { mm -= 1500; break; }
-														case 1: { mm -= 256; break; }
-														case 2: { mm -= 128; break; }
-														case 3: { mm -= 64; break; }
-														case 4: { mm -= 32; break; }
-														case 5: { mm -= 16; break; }
-														case 6: { mm -= 8; break; }
-														case 7: { mm -= 4; break; }
+														case 0: { mm -= aiDetails.WhiteRowBonuses[0]; break; }
+														case 1: { mm -= aiDetails.WhiteRowBonuses[1]; break; }
+														case 2: { mm -= aiDetails.WhiteRowBonuses[2]; break; }
+														case 3: { mm -= aiDetails.WhiteRowBonuses[3]; break; }
+														case 4: { mm -= aiDetails.WhiteRowBonuses[4]; break; }
+														case 5: { mm -= aiDetails.WhiteRowBonuses[5]; break; }
+														case 6: { mm -= aiDetails.WhiteRowBonuses[6]; break; }
+														case 7: { mm -= aiDetails.WhiteRowBonuses[7]; break; }
 												}												
 										}
 								}
@@ -594,7 +590,7 @@ class Node
 				return mm;
 		}
 
-		public int CalculateWhiteMinimax()
+		public int CalculateWhiteMinimax(AIDetails aiDetails)
 		{
 				int mm = 0;
 
@@ -609,14 +605,14 @@ class Node
 								{
 										switch (i)
 										{
-												case 0: { mm += 4; break; }
-												case 1: { mm += 8; break; }
-												case 2: { mm += 16; break; }
-												case 3: { mm += 32; break; }
-												case 4: { mm += 64; break; }
-												case 5: { mm += 128; break; }
-												case 6: { mm += 256; break; }
-												case 7: { mm += 1500; break; }
+												case 0: { mm += aiDetails.BlackRowBonuses[0]; break; }
+												case 1: { mm += aiDetails.BlackRowBonuses[1]; break; }
+												case 2: { mm += aiDetails.BlackRowBonuses[2]; break; }
+												case 3: { mm += aiDetails.BlackRowBonuses[3]; break; }
+												case 4: { mm += aiDetails.BlackRowBonuses[4]; break; }
+												case 5: { mm += aiDetails.BlackRowBonuses[5]; break; }
+												case 6: { mm += aiDetails.BlackRowBonuses[6]; break; }
+												case 7: { mm += aiDetails.BlackRowBonuses[7]; break; }
 										}																				
 								}
 								//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -629,46 +625,46 @@ class Node
 										{
 												switch (i)
 												{
-														case 0: { mm -= 1000; break; }
-														case 1: { mm -= 24; break; }
-														case 2: { mm -= 20; break; }
-														case 3: { mm -= 16; break; }
-														case 4: { mm -= 8; break; }
-														case 5: { mm -= 4; break; }
-														case 6: { mm -= 2; break; }
-														case 7: { mm -= 1; break; }
+														case 0: { mm -= aiDetails.WhiteRowBonuses[0]; break; }
+														case 1: { mm -= aiDetails.WhiteRowBonuses[1]; break; }
+														case 2: { mm -= aiDetails.WhiteRowBonuses[2]; break; }
+														case 3: { mm -= aiDetails.WhiteRowBonuses[3]; break; }
+														case 4: { mm -= aiDetails.WhiteRowBonuses[4]; break; }
+														case 5: { mm -= aiDetails.WhiteRowBonuses[5]; break; }
+														case 6: { mm -= aiDetails.WhiteRowBonuses[6]; break; }
+														case 7: { mm -= aiDetails.WhiteRowBonuses[7]; break; }
 												}
 
 												if (j != 0 && j != 7)
 												{
 														// Ha biztonságos mezőre lép +1 pont.
 														if (i != 0 && this.Table[i - 1, j + 1] != 1 && this.Table[i - 1, j - 1] != 1)
-																mm -= 4;
+																mm -= aiDetails.WhiteSafeFieldBonus;
 														//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 														//Sor
 														if (this.Table[i, j - 1] == 2)
-																mm -= 8;
+																mm -= aiDetails.WhiteRowFormationBonus;
 														if (this.Table[i, j + 1] == 2)
-																mm -= 8;
+																mm -= aiDetails.WhiteRowFormationBonus;
 														if (i != 7 && this.Table[i, j - 1] == 2 && this.Table[i, j + 1] == 2)
 														{
 																if (this.Table[i + 1, j - 1] == 2)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteDiagonalFormationBonus_SecondaryFormation;
 																if (this.Table[i + 1, j + 1] == 2)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteDiagonalFormationBonus_SecondaryFormation;
 														}
 
 														//Oszlop
 														if (i != 0 && this.Table[i - 1, j] == 2)
-																mm -= 4;
+																mm -= aiDetails.WhiteColumnFormationBonus;
 														if (i != 7 && this.Table[i + 1, j] == 2)
-																mm -= 4;
+																mm -= aiDetails.WhiteColumnFormationBonus;
 														if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
 														{
 																if (this.Table[i + 1, j - 1] == 2)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteDiagonalFormationBonus_SecondaryFormation;
 																if (this.Table[i + 1, j + 1] == 2)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteDiagonalFormationBonus_SecondaryFormation;
 														}
 
 														//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
@@ -676,23 +672,23 @@ class Node
 														{
 																if (this.Table[i - 1, j + 1] == 1)
 																{
-																		mm += 18;
+																		mm += aiDetails.WhitePenaltyForDangerousField;
 																}
 																if (this.Table[i - 1, j - 1] == 1)
 																{
-																		mm += 18;
+																		mm += aiDetails.WhitePenaltyForDangerousField;
 																}
 																if (this.Table[i + 1, j - 1] == 2)
 																{
-																		mm -= 16;
+																		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
 																}
 																if (this.Table[i + 1, j + 1] == 2)
 																{
-																		mm -= 16;
+																		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
 																}
 																if (i != 0 && this.Table[i + 1, j] == 2)
 																{
-																		mm -= 16;
+																		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
 																}
 														}
 												}
@@ -702,39 +698,39 @@ class Node
 														{
 																// Ha biztonságos mezőre lép +1 pont.
 																if (i != 0 && this.Table[i - 1, j + 1] != 1)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteSafeFieldBonusOnSide;
 
 																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 																//Sor
 																if (this.Table[i, j + 1] == 2)
 																{
-																		mm -= 16;
+																		mm -= aiDetails.WhiteRowFormationBonusOnSide;
 																		if (i != 7 && this.Table[i + 1, j + 1] == 2)
-																				mm -= 8;
+																				mm -= aiDetails.WhiteDiagonalFormationBonusOnSide_SecondaryFormation;
 																}
 
 																//Oszlop
 																if (i != 0 && this.Table[i - 1, j] == 2)
-																		mm -= 6;
+																		mm -= aiDetails.WhiteColumnFormationBonusOnSide;
 																if (i != 7 && this.Table[i + 1, j] == 2)
-																		mm -= 6;
+																		mm -= aiDetails.WhiteColumnFormationBonusOnSide;
 																if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
 																{
 																		if (this.Table[i + 1, j + 1] == 2)
-																				mm -= 4;
+																				mm -= aiDetails.WhiteDiagonalFormationBonusOnSide_SecondaryFormation;
 																}
 
 																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 																if (i != 0 && i < 5 && this.Table[i - 1, j + 1] == 1)
 																{
-																		mm += 21;
+																		mm += aiDetails.WhitePenaltyForDangerousFieldOnSide;
 																		if (this.Table[i + 1, j + 1] == 2)
 																		{
-																				mm -= 16;
+																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
 																		if (i != 7 && this.Table[i + 1, j] == 2)
 																		{
-																				mm -= 16;
+																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
 																}
 														}
@@ -742,39 +738,39 @@ class Node
 														{
 																// Ha biztonságos mezőre lép +1 pont.
 																if (i != 0 && this.Table[i - 1, j - 1] != 1)
-																		mm -= 4;
+																		mm -= aiDetails.WhiteSafeFieldBonusOnSide;
 
 																//Alakzat bónusz, ha egymás mellett vagy alatt vannak +1 pont.
 																//Sor
 																if (this.Table[i, j - 1] == 2)
 																{
-																		mm -= 16;
+																		mm -= aiDetails.WhiteRowFormationBonusOnSide;
 																		if (i != 7 && this.Table[i + 1, j - 1] == 2)
-																				mm -= 8;
+																				mm -= aiDetails.WhiteDiagonalFormationBonusOnSide_SecondaryFormation;
 																}
 
 																//Oszlop
 																if (i != 0 && this.Table[i - 1, j] == 2)
-																		mm -= 6;
+																		mm -= aiDetails.WhiteColumnFormationBonusOnSide;
 																if (i != 7 && this.Table[i + 1, j] == 2)
-																		mm -= 6;
+																		mm -= aiDetails.WhiteColumnFormationBonusOnSide;
 																if (i != 7 && i != 0 && this.Table[i - 1, j] == 2 && this.Table[i + 1, j] == 2)
 																{
 																		if (this.Table[i + 1, j - 1] == 2)
-																				mm -= 4;
+																				mm -= aiDetails.WhiteDiagonalFormationBonusOnSide_SecondaryFormation;
 																}
 
 																//Ellenfél ütő mezője - Nem biztonságos mező -1 pont
 																if (i != 0 && i < 5 && this.Table[i - 1, j - 1] == 1)
 																{
-																		mm += 21;
+																		mm += aiDetails.WhitePenaltyForDangerousFieldOnSide;
 																		if (this.Table[i + 1, j - 1] == 2)
 																		{
-																				mm -= 16;
+																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
 																		if (i != 7 && this.Table[i + 1, j] == 2)
 																		{
-																				mm -= 16;
+																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
 																}
 														}

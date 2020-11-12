@@ -3,28 +3,28 @@
   <Class Name="FieldController">
     <Position X="4.75" Y="1.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgBEAAAACCAAgABAAAAAAAAAAAgAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>BgBFBAAACCAAgAAAAAAAQAAAAAkAAAAAAAAAAAIAAEg=</HashCode>
       <FileName>Assets\Scripts\base-scripts\FieldController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Move">
-    <Position X="4.75" Y="4.75" Width="2.5" />
+    <Position X="2.25" Y="5.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAACEIAAAAAAAAAAAAAAAAAAAAAIQAAAAQAAQ=</HashCode>
+      <HashCode>AAAAAAAAASAAAAAAAAAAAAAAABAAAAQAAIQAACAQAAA=</HashCode>
       <FileName>Assets\Scripts\base-scripts\Move.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SelectPawn">
     <Position X="2.25" Y="1.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAQAoAAQAKAIAAACAAAABBAAEAAAEAQBIIAAAUAAAAA=</HashCode>
+      <HashCode>AAQAIAAQAaAAAAAAAAAAABAAEAAAAAQBIIAAAQAAAAA=</HashCode>
       <FileName>Assets\Scripts\base-scripts\SelectPawn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Node">
     <Position X="7.75" Y="1.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AQASAASAAJAAAAABAAAEQAAABQCQAAAACQABBAAAmEA=</HashCode>
+      <HashCode>AQASAASAAJAEAAABACAEQAAABQCQAAAACQABBAAAiEQ=</HashCode>
       <FileName>Assets\Scripts\base-scripts\TreeStuff.cs</FileName>
     </TypeIdentifier>
   </Class>

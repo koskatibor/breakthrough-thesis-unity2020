@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.menu_scripts.play_scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,24 +8,28 @@ using UnityEngine;
 
 public class AutoPlay : MonoBehaviour
 {		
-		private bool AutoPlayActive = false;
-		private GameObject ChessTable;
+		private bool AutoPlayActive = false;		
 		private FieldController Controller;
+		private AIDetails AiDetails;
 		private static List<string> UsedWhiteStates = new List<string>();
 		private static List<string> UsedStates = new List<string>();
 		private static int StepCounter = 0;
 		private int StepRandomizer;
+		public bool UseStepIgnoreFile = false;
 
 		private void Start()
 		{
-				ChessTable = GameObject.Find("chess-table");
+				GameObject ChessTable =	GameObject.Find("chess-table");
 				Controller = ChessTable.GetComponent<FieldController>();
+				ChessTable = GameObject.Find("chess-table");
+				GameObject ScriptHolder = GameObject.Find("ScriptHolder");
+				AiDetails = ScriptHolder.GetComponent<AIDetails>();
 				StepRandomizer = Random.Range(2, 20);
 		}
 		void Update()
 		{				
 				//AutoPlay
-				if (Input.GetKey(KeyCode.P))
+				if (Input.GetKey(KeyCode.P) && Time.timeScale != 0)
 				{
 						if (AutoPlayActive)
 								AutoPlayActive = false;
@@ -85,18 +90,7 @@ public class AutoPlay : MonoBehaviour
 												sw.WriteLine(state);
 										}
 								}
-						}
-
-						StepCounter = 0;
-
-						Controller.PassiveBlack = 0;
-						Controller.PassiveWhite = 0;
-						UsedStates.Clear();
-						UsedWhiteStates.Clear();
-						StepRandomizer = Random.Range(2, 15);
-
-						Controller.FirstStart = true;
-						Controller.Start();
+						}						
 				}
 		}
 
@@ -104,19 +98,20 @@ public class AutoPlay : MonoBehaviour
 		{
 				Node root = new Node(Controller.Table, null, false, 0);
 				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
-				Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValuesOfWhiteAI));
+				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValuesOfWhiteAI));
 				treebuild.Start();
 				while (true)
 				{
 						if (!(treebuild.ThreadState == ThreadState.Running))
 								break;
 				}
-				minimax.Start();
-				while (true)
-				{
-						if (!(minimax.ThreadState == ThreadState.Running))
-								break;
-				}
+				//minimax.Start();
+				//while (true)
+				//{
+				//		if (!(minimax.ThreadState == ThreadState.Running))
+				//				break;
+				//}
+				root.AddTerminalMinimaxValuesOfWhiteAI(AiDetails);
 				//root.BuildTree();
 				//root.AddTerminalMinimaxValues();
 				root.FillTreeWithMinimax(int.MinValue, int.MaxValue);
@@ -128,7 +123,7 @@ public class AutoPlay : MonoBehaviour
 
 				using (StreamWriter sr = new StreamWriter("developer_log_whitestep.txt", true))
 				{
-						if (StepCounter < StepRandomizer) //StepCounter < 4
+						if (UseStepIgnoreFile && StepCounter < StepRandomizer) //StepCounter < 4 vagy StepCounter < StepRandomizer
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(true));
 						}
@@ -176,19 +171,20 @@ public class AutoPlay : MonoBehaviour
 		{
 				Node root = new Node(Controller.Table, null, true, 0);
 				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
-				Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
+				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
 				treebuild.Start();
 				while (true)
 				{
 						if (!(treebuild.ThreadState == ThreadState.Running))
 								break;
 				}
-				minimax.Start();
-				while (true)
-				{
-						if (!(minimax.ThreadState == ThreadState.Running))
-								break;
-				}
+				root.AddTerminalMinimaxValues(AiDetails);
+				//minimax.Start();
+				//while (true)
+				//{
+				//		if (!(minimax.ThreadState == ThreadState.Running))
+				//				break;
+				//}
 				//root.BuildTree();
 				//root.AddTerminalMinimaxValues();
 				root.FillTreeWithMinimax(int.MinValue, int.MaxValue);
@@ -197,9 +193,9 @@ public class AutoPlay : MonoBehaviour
 				int bestMinimax;
 				int choosen_best_id;
 				StringBuilder sb = new StringBuilder();
-				using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
-				{
-						if (StepCounter < StepRandomizer) //StepCounter < 4
+				//using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
+				//{
+						if (UseStepIgnoreFile && StepCounter < StepRandomizer) //StepCounter < 4
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
 						}
@@ -234,7 +230,7 @@ public class AutoPlay : MonoBehaviour
 						//		sr.WriteLine();
 						//}
 						//sr.WriteLine();
-				}
+				//}
 
 				StepCounter++;
 				Controller.Start();
