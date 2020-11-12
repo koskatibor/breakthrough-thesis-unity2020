@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class AutoPlay : MonoBehaviour
 {		
-		private bool AutoPlayActive = false;		
+		public bool AutoPlayActive = false;		
 		private FieldController Controller;
 		private AIDetails AiDetails;
 		private static List<string> UsedWhiteStates = new List<string>();
@@ -27,37 +27,15 @@ public class AutoPlay : MonoBehaviour
 				StepRandomizer = Random.Range(2, 20);
 		}
 		void Update()
-		{				
-				//AutoPlay
-				if (Input.GetKey(KeyCode.P) && Time.timeScale != 0)
-				{
-						if (AutoPlayActive)
-								AutoPlayActive = false;
-						else
-								AutoPlayActive = true;	
-				}
-
-				if (Input.GetKey(KeyCode.N))
-				{
-						AutoPlayActive = true;
-						AutomaticPlay();
-						AutoPlayActive = false;
-				}
-
-				if (Input.GetKey(KeyCode.R))
-				{
-						Controller.FirstStart = true;
-						Controller.Start();
-				}
-
-				if (AutoPlayActive)
+		{
+				if (AutoPlayActive && Time.timeScale != 0)
 				{
 						AutomaticPlay();
 				}
 		}
 
-		private void AutomaticPlay()
-		{
+		public void AutomaticPlay()
+		{				
 				if (!Controller.PlayerLostGame && !Controller.AILostGame)
 				{
 						if (Controller.playersTurn)
@@ -90,8 +68,8 @@ public class AutoPlay : MonoBehaviour
 												sw.WriteLine(state);
 										}
 								}
-						}						
-				}
+						}
+				}				
 		}
 
 		IEnumerator WhiteAIPlay()

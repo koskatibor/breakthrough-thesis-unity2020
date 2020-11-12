@@ -36,8 +36,11 @@ public class PauseMenu : MonoBehaviour
 				{
 						if (!PauseMenuPanel.activeSelf)
 						{
-								Time.timeScale = 0;
-								PauseMenuPanel.SetActive(true);
+								if (Time.timeScale != 0)
+								{
+										Time.timeScale = 0;
+										PauseMenuPanel.SetActive(true);
+								}								
 						}
 						else
 						{
