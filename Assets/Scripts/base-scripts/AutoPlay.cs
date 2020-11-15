@@ -14,8 +14,7 @@ public class AutoPlay : MonoBehaviour
 		private static List<string> UsedWhiteStates = new List<string>();
 		private static List<string> UsedStates = new List<string>();
 		private static int StepCounter = 0;
-		private int StepRandomizer;
-		public bool UseStepIgnoreFile = false;
+		private int StepRandomizer;		
 
 		private void Start()
 		{
@@ -24,7 +23,7 @@ public class AutoPlay : MonoBehaviour
 				ChessTable = GameObject.Find("chess-table");
 				GameObject ScriptHolder = GameObject.Find("ScriptHolder");
 				AiDetails = ScriptHolder.GetComponent<AIDetails>();
-				StepRandomizer = Random.Range(2, 20);
+				StepRandomizer = Random.Range(2, 20);				
 		}
 		void Update()
 		{
@@ -75,14 +74,15 @@ public class AutoPlay : MonoBehaviour
 		IEnumerator WhiteAIPlay()
 		{
 				Node root = new Node(Controller.Table, null, false, 0);
-				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
+				root.BuildTree(AiDetails.MaxLevelWhite);
+				//Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
 				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValuesOfWhiteAI));
-				treebuild.Start();
-				while (true)
-				{
-						if (!(treebuild.ThreadState == ThreadState.Running))
-								break;
-				}
+				//treebuild.Start();
+				//while (true)
+				//{
+				//		if (!(treebuild.ThreadState == ThreadState.Running))
+				//				break;
+				//}
 				//minimax.Start();
 				//while (true)
 				//{
@@ -101,13 +101,20 @@ public class AutoPlay : MonoBehaviour
 
 				using (StreamWriter sr = new StreamWriter("developer_log_whitestep.txt", true))
 				{
-						if (UseStepIgnoreFile && StepCounter < StepRandomizer) //StepCounter < 4 vagy StepCounter < StepRandomizer
+						if (StepCounter < StepRandomizer) //StepCounter < 4 vagy StepCounter < StepRandomizer
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(true));
 						}
 						else
 						{
-								newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(false));
+								if (AiDetails.UseStepIgnore)
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(false));
+								}
+								else
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(true));
+								}
 						}
 
 						for (int i = 0; i < 8; i++)
@@ -148,15 +155,16 @@ public class AutoPlay : MonoBehaviour
 		IEnumerator EnemyMove()
 		{
 				Node root = new Node(Controller.Table, null, true, 0);
-				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
+				root.BuildTree(AiDetails.MaxLevel);
+				//Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
 				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
-				treebuild.Start();
-				while (true)
-				{
-						if (!(treebuild.ThreadState == ThreadState.Running))
-								break;
-				}
-				root.AddTerminalMinimaxValues(AiDetails);
+				//treebuild.Start();
+				//while (true)
+				//{
+				//		if (!(treebuild.ThreadState == ThreadState.Running))
+				//				break;
+				//}
+				//root.AddTerminalMinimaxValues(AiDetails);
 				//minimax.Start();
 				//while (true)
 				//{
@@ -173,13 +181,20 @@ public class AutoPlay : MonoBehaviour
 				StringBuilder sb = new StringBuilder();
 				//using (StreamWriter sr = new StreamWriter("developer_log.txt", true))
 				//{
-						if (UseStepIgnoreFile && StepCounter < StepRandomizer) //StepCounter < 4
+						if (StepCounter < StepRandomizer) //StepCounter < 4
 						{
 								newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
 						}
 						else
 						{
-								newState = root.GetStateByID(choosen_best_id = root.GetBestID(false));
+								if (AiDetails.UseStepIgnore)
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(false));
+								}
+								else
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestIDForWhiteAi(true));
+								}
 						}
 
 						for (int i = 0; i < 8; i++)

@@ -69,14 +69,15 @@ public class Move : MonoBehaviour
 		IEnumerator EnemyMove()
 		{
 				Node root = new Node(Controller.Table, null, true, 0);
-				Thread treebuild = new Thread(new ThreadStart(root.BuildTree));
+				root.BuildTree(AiDetails.MaxLevel);
+				//Thread treebuild = new Thread(new ThreadStart());
 				//Thread minimax = new Thread(new ThreadStart(root.AddTerminalMinimaxValues));
-				treebuild.Start();
-				while (true)
-				{
-						if (!(treebuild.ThreadState == ThreadState.Running))
-								break;
-				}
+				//treebuild.Start();
+				//while (true)
+				//{
+				//		if (!(treebuild.ThreadState == ThreadState.Running))
+				//				break;
+				//}
 				root.AddTerminalMinimaxValues(AiDetails);
 				//minimax.Start();
 				//while (true)
@@ -100,7 +101,14 @@ public class Move : MonoBehaviour
 						}
 						else
 						{
-								newState = root.GetStateByID(choosen_best_id = root.GetBestID(false));
+								if (AiDetails.UseStepIgnore)
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestID(false));
+								}
+								else
+								{
+										newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
+								}
 						}
 
 						for (int i = 0; i < 8; i++)

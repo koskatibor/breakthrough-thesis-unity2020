@@ -8,10 +8,10 @@ using UnityEngine;
 namespace Assets.Scripts.menu_scripts.play_scripts
 {
 		public class AIDetails : MonoBehaviour
-		{
-				public int Difficulty = 0;
+		{				
 				public bool UseStepIgnore = false;
 				public int MaxLevel = 2;
+				public int MaxLevelWhite = 2;
 
 				public int[] WhiteRowBonuses = new int[] { 1, 2, 4, 8, 16, 20, 24, 1000 };
 				public int[] BlackRowBonuses = new int[] { 1, 2, 4, 8, 16, 20, 24, 1000 };

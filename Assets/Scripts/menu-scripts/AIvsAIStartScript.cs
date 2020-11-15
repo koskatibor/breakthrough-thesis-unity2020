@@ -14,6 +14,7 @@ public class AIvsAIStartScript : MonoBehaviour
 
 		public Toggle StepIgnoreToggle;
 		public InputField MaxLevel;
+		public InputField MaxLevelWhite;
 
 		#region White elements
 		public InputField WhiteRow1;
@@ -72,7 +73,8 @@ public class AIvsAIStartScript : MonoBehaviour
 
 				StepIgnoreToggle.isOn = AiDetails.UseStepIgnore;
 				MaxLevel.text = AiDetails.MaxLevel.ToString();
-				
+				MaxLevelWhite.text = AiDetails.MaxLevelWhite.ToString();
+
 				//White
 				WhiteRow1.text = AiDetails.WhiteRowBonuses[0].ToString();
 				WhiteRow2.text = AiDetails.WhiteRowBonuses[1].ToString();
@@ -130,6 +132,7 @@ public class AIvsAIStartScript : MonoBehaviour
 				#region ParseGivenNumbers
 				AiDetails.UseStepIgnore = StepIgnoreToggle.isOn;
 				AiDetails.MaxLevel = Converter(MaxLevel.text);
+				AiDetails.MaxLevelWhite = Converter(MaxLevelWhite.text);
 
 				//White
 				AiDetails.WhiteRowBonuses[0] = Converter(WhiteRow1.text);

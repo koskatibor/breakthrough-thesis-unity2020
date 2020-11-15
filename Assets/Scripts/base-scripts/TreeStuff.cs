@@ -51,9 +51,9 @@ class Node
 		//    static int level = 0;
 
 		//A fa maximum mélysége
-		static int MaxLevel = 4;
+		//static int MaxLevel = 4;
 
-		public void BuildTree()
+		public void BuildTree(int maxLevel)
 		{
 				bool outOfNodes = false;				
 				NodeStack.Push(this);
@@ -74,7 +74,7 @@ class Node
 								}
 						}
 
-						while (currentNode.NodeLevel == MaxLevel || noNeedForMoreNodes)
+						while (currentNode.NodeLevel == maxLevel || noNeedForMoreNodes)
 						{
 								if (NodeStack.Count == 0)
 								{
@@ -399,9 +399,7 @@ class Node
 		//CurrentMinimax számoló
 		public int CalculateMiniMax(AIDetails aiDetails)
 		{				
-				int mm = 0;				
-
-				int[,] TableChanges = new int[8, 8];
+				int mm = 0;
 
 				//Fekete pontjainak kiszámítása
 				for (int i = 0; i < 8; i++)
@@ -593,8 +591,6 @@ class Node
 		public int CalculateWhiteMinimax(AIDetails aiDetails)
 		{
 				int mm = 0;
-
-				int[,] TableChanges = new int[8, 8];
 
 				//Fekete pontjainak kiszámítása
 				for (int i = 0; i < 8; i++)
