@@ -103,11 +103,11 @@ public class Move : MonoBehaviour
 						{
 								if (AiDetails.UseStepIgnore)
 								{
-										newState = root.GetStateByID(choosen_best_id = root.GetBestID(false));
+										newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
 								}
 								else
 								{
-										newState = root.GetStateByID(choosen_best_id = root.GetBestID(true));
+										newState = root.GetStateByID(choosen_best_id = root.GetBestID(false));
 								}
 						}
 

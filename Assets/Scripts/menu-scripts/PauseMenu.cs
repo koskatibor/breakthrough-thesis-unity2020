@@ -68,7 +68,7 @@ public class PauseMenu : MonoBehaviour
 		public void RestartButtonAction()
 		{
 				Time.timeScale = 1;
-				Application.LoadLevel(Application.loadedLevel);
+				SceneManager.LoadScene("AIVSAI");
 		}
 
 		public void HowToPlayButtonAction()

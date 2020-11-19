@@ -29,13 +29,13 @@ public class WinScript : MonoBehaviour
 						WinPanel.SetActive(true);						
 						if (Controller.AILostGame)
 						{
-								WinText.text = "White Won!";
+								WinText.text = "White Wins!";
 						}
 						else
 						{
 								if (Controller.PlayerLostGame)
 								{
-										WinText.text = "Black Won!";
+										WinText.text = "Black Wins!";
 								}
 						}
 						Time.timeScale = 0;

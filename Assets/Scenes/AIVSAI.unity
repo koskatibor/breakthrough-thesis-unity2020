@@ -27769,8 +27769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseStepIgnore: 0
-  MaxLevel: 4
-  MaxLevelWhite: 4
+  MaxLevel: 3
   WhiteRowBonuses: e803000018000000140000001000000008000000040000000200000001000000
   BlackRowBonuses: 01000000020000000400000008000000100000001400000018000000e8030000
   WhiteSafeFieldBonus: 4

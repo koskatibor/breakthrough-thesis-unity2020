@@ -471,10 +471,10 @@ class Node
 														{
 																mm += aiDetails.BlackPawnInDangerDefenderBonus;
 														}														
-														if (i != 0 && this.Table[i - 1, j] == 1)
-														{
-																mm += aiDetails.BlackPawnInDangerDefenderBonus;
-														}														
+														//if (i != 0 && this.Table[i - 1, j] == 1)
+														//{
+														//		mm += aiDetails.BlackPawnInDangerDefenderBonus;
+														//}														
 												}												
 										}
 										else
@@ -513,10 +513,10 @@ class Node
 																{
 																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
-																if (i != 0 && this.Table[i - 1, j] == 1)
-																{
-																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
-																}
+																//if (i != 0 && this.Table[i - 1, j] == 1)
+																//{
+																//		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
+																//}
 														}														
 												}
 												else
@@ -553,10 +553,10 @@ class Node
 																{
 																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
 																}
-																if (i != 0 && this.Table[i - 1, j] == 1)
-																{
-																		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
-																}
+																//if (i != 0 && this.Table[i - 1, j] == 1)
+																//{
+																//		mm += aiDetails.BlackPawnInDangerDefenderBonusOnSide;
+																//}
 														}														
 												}
 										}
@@ -682,10 +682,10 @@ class Node
 																{
 																		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
 																}
-																if (i != 0 && this.Table[i + 1, j] == 2)
-																{
-																		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
-																}
+																//if (i != 0 && this.Table[i + 1, j] == 2)
+																//{
+																//		mm -= aiDetails.WhitePawnInDangerDefenderBonus;
+																//}
 														}
 												}
 												else
@@ -724,10 +724,10 @@ class Node
 																		{
 																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
-																		if (i != 7 && this.Table[i + 1, j] == 2)
-																		{
-																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
-																		}
+																		//if (i != 7 && this.Table[i + 1, j] == 2)
+																		//{
+																		//		mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
+																		//}
 																}
 														}
 														else
@@ -764,10 +764,10 @@ class Node
 																		{
 																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
 																		}
-																		if (i != 7 && this.Table[i + 1, j] == 2)
-																		{
-																				mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
-																		}
+																		//if (i != 7 && this.Table[i + 1, j] == 2)
+																		//{
+																		//		mm -= aiDetails.WhitePawnInDangerDefenderBonusOnSide;
+																		//}
 																}
 														}
 												}
@@ -802,14 +802,6 @@ class Node
 												break;
 								}
 
-								//foreach (Node node in this.Children)
-								//{
-								//		BestMinimax = Mathf.Max(BestMinimax, node.FillTreeWithMinimax(alpha, beta));
-								//		this.Minimax = BestMinimax;
-								//		alpha = Mathf.Max(alpha, BestMinimax);
-								//		if (alpha >= beta)
-								//				break;
-								//}
 								return BestMinimax;
 						}
 						else
@@ -824,45 +816,9 @@ class Node
 												break;
 								}
 
-								//foreach (Node node in this.Children)
-								//{
-								//		BestMinimax = Mathf.Min(BestMinimax, node.FillTreeWithMinimax(alpha, beta));
-								//		this.Minimax = BestMinimax;
-								//		beta = Mathf.Min(beta, BestMinimax);
-								//		if (beta <= alpha)
-								//				break;
-								//}
 								return BestMinimax;
 						}
 				}
-
-				//if (this.Children.Count == 0)
-				//{
-				//		return this.Minimax;
-				//}
-				//else
-				//{
-				//		if (this.IsWhiteNode)
-				//		{
-				//				BestMinimax = int.MinValue;
-				//				foreach (Node node in this.Children)
-				//				{
-				//						BestMinimax = Mathf.Max(BestMinimax, node.FillTreeWithMinimax());
-				//						this.Minimax = BestMinimax;
-				//				}
-				//				return BestMinimax;
-				//		}
-				//		else
-				//		{
-				//				BestMinimax = int.MaxValue;
-				//				foreach (Node node in this.Children)
-				//				{
-				//						BestMinimax = Mathf.Min(BestMinimax, node.FillTreeWithMinimax());
-				//						this.Minimax = BestMinimax;
-				//				}
-				//				return BestMinimax;
-				//		}
-				//}
 		}
 
 		static int CurrentMinimax;
@@ -1016,7 +972,7 @@ class Node
 												System.Random random = new System.Random();
 												double rand1 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
 												double rand2 = ((random.NextDouble() * random.NextDouble()) % (random.NextDouble() * random.NextDouble()));
-												if (rand1 > rand2)
+												if (rand1 < rand2)
 												{
 														MinMinimax = this.Children[i].Minimax;
 														BestId = this.Children[i].Id;

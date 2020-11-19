@@ -36,10 +36,10 @@ namespace Assets.Scripts.menu_scripts.play_scripts
 				public int WhiteDiagonalFormationBonusOnSide_SecondaryFormation = 4;
 				public int BlackDiagonalFormationBonusOnSide_SecondaryFormation = 4;
 
-				public int WhitePenaltyForDangerousField = -20;
-				public int BlackPenaltyForDangerousField = -20;
-				public int WhitePenaltyForDangerousFieldOnSide = -24;
-				public int BlackPenaltyForDangerousFieldOnSide = -24;
+				public int WhitePenaltyForDangerousField = 20;
+				public int BlackPenaltyForDangerousField = 20;
+				public int WhitePenaltyForDangerousFieldOnSide = 24;
+				public int BlackPenaltyForDangerousFieldOnSide = 24;
 
 				public int WhitePawnInDangerDefenderBonus = 16;
 				public int BlackPawnInDangerDefenderBonus = 16;

@@ -283,7 +283,7 @@ public class FieldController : MonoBehaviour
 														{
 																BlackPawns[j].transform.position = new Vector3(Random.Range(50f, 250f), Random.Range(50f, 250f), Random.Range(50f, 250f));
 																BlackPawns[j].SetActive(false);
-																Debug.Log("Leütött fekete bábú: " + PassiveBlack++);
+																//Debug.Log("Leütött fekete bábú: " + PassiveBlack++);
 																hit = true;
 																break;
 														}
@@ -291,7 +291,7 @@ public class FieldController : MonoBehaviour
 														{
 																WhitePawns[i].transform.position = new Vector3(Random.Range(300f, 500f), Random.Range(300f, 500f), Random.Range(300f, 500f));
 																WhitePawns[i].SetActive(false);
-																Debug.Log("Leütött fehér bábú: " + PassiveWhite++);
+																//Debug.Log("Leütött fehér bábú: " + PassiveWhite++);
 																hit = true;
 																break;
 														}
